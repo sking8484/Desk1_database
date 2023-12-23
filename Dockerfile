@@ -29,10 +29,11 @@ RUN cargo build --release
 FROM rust:1.72.0-bookworm AS runtime
 
 # Copy release build from builder image
+ARG DATABASE_URL
 COPY --from=builder /app/target/release/Desk1_database /app/programRunner
 WORKDIR /app
 
 RUN cargo install diesel_cli --no-default-features --features postgres
-RUN diesel setup
+COPY ./Makefile .
 
-CMD ["./programRunner"]
+CMD ["make", "run_db"]
