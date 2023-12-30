@@ -1,10 +1,10 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
-    posts (id) {
+    stocks (id) {
         id -> Int4,
-        title -> Varchar,
-        body -> Text,
-        published -> Bool,
+        date_of_price -> Date,
+        symbol -> Varchar,
+        price -> Float4,
     }
 }
